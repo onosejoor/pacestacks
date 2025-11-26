@@ -1,0 +1,7 @@
+.env*
+node_modules
+REPORT.md
+bun.lock
+package-lock.json
+
+.next
