@@ -7,17 +7,10 @@ import ErrorDisplay from "@/components/error-display";
 import { getErrorMessage } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { ArrowLeft, Download, FileText } from "lucide-react";
+import { ArrowLeft, FileText } from "lucide-react";
 import DeleteDataDialog from "@/components/delete-data-dialog";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import dynamic from "next/dynamic";
-import { DocViewerRenderers } from "@cyntler/react-doc-viewer";
-
-const DocViewer = dynamic(() => import("@cyntler/react-doc-viewer"), {
-  ssr: false,
-  loading: () => <LoaderDisplay text="Loading document preview..." />,
-});
 
 export default function DocumentDetails({ id }: { id: string }) {
   const router = useRouter();
@@ -39,14 +32,6 @@ export default function DocumentDetails({ id }: { id: string }) {
   if (!document) {
     return <ErrorDisplay message="Document not found" title="Not Found" />;
   }
-
-  const docs = [
-    {
-      uri: `/api/documents/${id}/download`,
-      fileName: document.fileName,
-      fileType: document.fileName.split(".").pop(),
-    },
-  ];
 
   return (
     <div className="space-y-6">
@@ -126,17 +111,10 @@ export default function DocumentDetails({ id }: { id: string }) {
         <TabsContent value="preview">
           <Card>
             <CardContent className="p-0 h-[600px] overflow-hidden rounded-lg">
-              <DocViewer
-                documents={docs}
-                pluginRenderers={DocViewerRenderers}
-                style={{ height: "100%" }}
-                config={{
-                  header: {
-                    disableHeader: true,
-                    disableFileName: true,
-                    retainURLParams: false,
-                  },
-                }}
+              <iframe
+                src={`/api/documents/${id}/download`}
+                className="w-full h-full border-none"
+                title={document.fileName}
               />
             </CardContent>
           </Card>
