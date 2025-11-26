@@ -1,41 +1,34 @@
-# 🔥 Auth Template - Next.js Edition 🔒
+# PaceStacks: Dynamic Inventory & Document Manager
 
-A modern authentication template built with Next.js, designed to kickstart your projects with secure and stylish user authentication. ✨
+## Overview
+PaceStacks is a modern web application built with Next.js and TypeScript, designed to provide comprehensive inventory and document management capabilities. This project serves as a robust client-side interface for managing products and documents, featuring secure authentication and an intuitive user experience.
 
-## ✨ Features
+## Features
+- 🚀 **User Authentication**: Secure login and registration flows with session management.
+- 📦 **Product Management**:
+    - Create, Read, Update, and Delete (CRUD) product records.
+    - View product details, including SKU, quantity, prices, and low stock thresholds.
+    - Search and paginate through product listings.
+- 📄 **Document Management**:
+    - Upload, View, and Delete documents (PDF, DOCX).
+    - Preview documents directly within the application using an integrated viewer.
+    - Search and paginate through uploaded document listings.
+- 🔄 **Real-time Data Fetching**: Utilizes SWR for efficient and up-to-date data display.
+- 🎨 **Modern UI**: Built with Shadcn UI and Tailwind CSS for a sleek, responsive, and customizable interface.
+- 🛡️ **Error Handling**: Robust error display and user feedback through toasts.
+- DarkMode Support: Theme switching capabilities for enhanced user comfort.
 
-- 🔐 **Secure Authentication**: Implements robust user authentication with sign-up, sign-in, and session management.
-- 🎨 **Modern UI**: Utilizes a sleek and modern design with components from Shadcn UI.
-- 🛡️ **Middleware Protection**: Protects specific routes (e.g., `/profile`) using Next.js middleware.
-- 📧 **Email/Password Auth**: Supports traditional email and password authentication.
-- 🌐 **Axios Integration**: Uses Axios for making HTTP requests to the backend API.
-- 🎨 **Customizable Themes**: Easily switch between light and dark themes using `next-themes`.
-- 🔔 **Real-time Notifications**: Provides user feedback with `sonner` for toast notifications.
+## Getting Started
 
-## 🛠️ Technologies Used
+### Installation
+To get PaceStacks up and running on your local machine, follow these steps:
 
-| Technology   | Description                                                        | Link                                                              |
-| :----------- | :----------------------------------------------------------------- | :---------------------------------------------------------------- |
-| Next.js      | React framework for building modern web applications               | [https://nextjs.org/](https://nextjs.org/)                           |
-| TypeScript   | Superset of JavaScript that adds static typing                    | [https://www.typescriptlang.org/](https://www.typescriptlang.org/) |
-| Tailwind CSS | Utility-first CSS framework for rapid UI development                | [https://tailwindcss.com/](https://tailwindcss.com/)             |
-| Shadcn UI    | Re-usable components built using Radix UI and Tailwind CSS        | [https://ui.shadcn.com/](https://ui.shadcn.com/)                  |
-| Axios        | Promise based HTTP client for the browser and node.js             | [https://axios-http.com/](https://axios-http.com/)                |
-| Sonner       | Opinionated toast notifications                                      | [https://sonner.emilkowalski.com/](https://sonner.emilkowalski.com/)                  |
-
-## 🚀 Installation
-
-Follow these steps to get the project running locally:
-
-1.  **Clone the repository:**
-
+1.  **Clone the Repository**:
     ```bash
-    git clone https://github.com/onosejoor/auth-template.git
+    git clone <repository-url>
     cd client
     ```
-
-2.  **Install dependencies:**
-
+2.  **Install Dependencies**:
     ```bash
     npm install
     # or
@@ -43,77 +36,91 @@ Follow these steps to get the project running locally:
     # or
     pnpm install
     ```
+3.  **Configure Environment Variables**:
+    Create a `.env.local` file in the root of the project and add the following:
 
-3.  **Run the development server:**
+### Environment Variables
+- `NEXT_PUBLIC_SERVER_URL`: The base URL of your backend API.
+  _Example:_ `NEXT_PUBLIC_SERVER_URL=http://localhost:5000/api/v1`
 
-    ```bash
-    npm run dev
-    # or
-    yarn dev
-    # or
-    pnpm dev
-    ```
+### Running the Development Server
+Once the dependencies are installed and environment variables are set, you can start the development server:
 
-    Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 💻 Usage
-
-### Sign Up Form
-
-The sign-up form (`src/app/signup/_components/signup-form.tsx`) allows new users to create an account.
-
-```tsx
-import SignUpForm from "./_components/signup-form"
-
-export default function SignUpPage() {
-  return <SignUpForm />
-}
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-### Sign In Form
+## Usage
+Upon launching the application, you will be greeted with a landing page where you can choose to sign in or register.
 
-The sign-in form (`src/app/signin/_components/signin-form.tsx`) allows existing users to log in.
+### User Registration
+New users can create an account by providing an email, full name, password, and selecting a role (staff or admin).
+Navigate to `/auth/register` to create an account.
 
-```tsx
-import SignInForm from "./_components/signin-form"
+### User Login
+Existing users can log in with their registered email and password.
+Navigate to `/auth/login` to sign in.
 
-export default function SignInPage() {
-  return <SignInForm />
-}
-```
+### Dashboard Overview
+After successful authentication, you will be redirected to the dashboard. From here, you can navigate to the "Products" or "Documents" sections.
 
-### Profile Page
+#### Product Management
+-   **View Products**: Access the products list from `/dashboard/products`. You can search and paginate through existing products.
+-   **Create/Update Product**: Click "Create Product" on the products page or "Update Product" on a product's detail page to open a form for managing product information (name, SKU, quantity, prices, low stock threshold).
+-   **Delete Product**: From a product's detail page, administrators can delete product records.
 
-The profile page (`src/app/profile/page.tsx`) displays user information and requires authentication.
+#### Document Management
+-   **View Documents**: Access the documents list from `/dashboard/documents`. You can search and paginate through uploaded documents.
+-   **Upload Document**: Navigate to `/dashboard/documents/upload` to upload new PDF or DOCX files.
+-   **View Document Details & Preview**: Click on a document from the list to view its details and get a rich preview of its content.
+-   **Delete Document**: From a document's detail page, administrators can delete documents.
 
-```tsx
-import { use } from "react"
-import ProfilePage from "./_components/profile-page"
-import { getUser } from "@/actions/getUser"
+## Technologies Used
+| Category           | Technology                   | Description                                  |
+| :----------------- | :--------------------------- | :------------------------------------------- |
+| **Frontend**       | [Next.js](https://nextjs.org) | React framework for production               |
+|                    | [React](https://react.dev)    | JavaScript library for building user interfaces |
+|                    | [TypeScript](https://www.typescriptlang.org/) | Strongly typed JavaScript                  |
+| **Styling**        | [Tailwind CSS](https://tailwindcss.com/) | Utility-first CSS framework                 |
+|                    | [Shadcn UI](https://ui.shadcn.com/) | Beautifully designed components              |
+| **Data Fetching**  | [SWR](https://swr.vercel.app/) | React Hooks for Data Fetching                 |
+|                    | [Axios](https://axios-http.com/) | Promise-based HTTP client for the browser and Node.js |
+| **Validation**     | [Zod](https://zod.dev/)       | TypeScript-first schema declaration and validation library |
+| **Icons**          | [Lucide React](https://lucide.dev/icons/) | A fork of Feather Icons with more icons     |
+| **Notifications**  | [Sonner](https://sonner.emilkowalski.no/) | An opinionated toast component for React |
+| **Theming**        | [next-themes](https://github.com/pacocoursey/next-themes) | System for managing themes in Next.js apps |
+| **Document Viewer**| [@cyntler/react-doc-viewer](https://www.npmjs.com/package/@cyntler/react-doc-viewer) | React component for viewing various document types |
 
-export default function Profile() {
-  const user = use(getUser())
+## Contributing
+We welcome contributions to PaceStacks! If you're looking to contribute, please follow these guidelines:
 
-  if (!user.success) {
-    return new Error("Error fetching user")
-  }
+- 🍴 **Fork the repository** and clone it to your local machine.
+- 🌳 Create a new branch for your feature or bug fix: `git checkout -b feature/your-feature-name`.
+- ✨ Make your changes and ensure your code adheres to the project's coding standards.
+- ✅ Write clear and concise commit messages.
+- ⬆️ Push your changes to your forked repository.
+- 🤝 Open a pull request to the main branch with a detailed description of your changes.
 
-  
+## License
+This project is licensed under the MIT License.
 
-  return <ProfilePage user={user.user!} />
-}
-```
+## Author Info
+**Your Name**
+- LinkedIn: [Your LinkedIn Profile](https://www.linkedin.com/in/your-username)
+- Twitter: [Your Twitter Profile](https://twitter.com/your-username)
+- Portfolio: [Your Portfolio Website](https://www.yourportfolio.com)
 
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
-
-## 👨‍💻 Author Info
-
-- Author: [Your Name]
-  - GitHub: [Your GitHub Link]
-  - Twitter: [Your Twitter Link]
-
-##
+---
+[![Built with Next.js](https://img.shields.io/badge/Built%20with-Next.js-000000.svg)](https://nextjs.org)
+[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![Shadcn UI](https://img.shields.io/badge/Shadcn_UI-000000?style=flat&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/)
+[![SWR](https://img.shields.io/badge/SWR-F88126?style=flat&logo=swr&logoColor=white)](https://swr.vercel.app/)
+[![Zod](https://img.shields.io/badge/Zod-3E67B1?style=flat&logo=zod&logoColor=white)](https://zod.dev/)
 
 [![Readme was generated by Dokugen](https://img.shields.io/badge/Readme%20was%20generated%20by-Dokugen-brightgreen)](https://www.npmjs.com/package/dokugen)
